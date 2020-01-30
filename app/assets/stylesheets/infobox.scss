@@ -1,0 +1,42 @@
+.infobox {
+  border: 1px solid #ddd;
+  background-color: mix(#eee, #fff, 50%);
+  margin: 1rem auto;
+  min-width: 250px;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 768px) {
+    float: right;
+    margin: unset;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  & > .infobox__image {
+    width: 200px;
+    display: block;
+    margin: auto;
+  }
+
+  & > .infobox__name {
+    margin-top: 0.25rem;
+    text-align: center;
+  }
+
+  & > .infobox__properties {
+    & > .infobox__properties__property {
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+
+      & > .infobox__properties__property__name {
+        margin: 0;
+        font-weight: normal;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: var(--sub-text-color);
+      }
+    }
+  }
+}

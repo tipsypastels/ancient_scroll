@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: non_canonicities
+#
+#  id          :bigint           not null, primary key
+#  object_type :string
+#  reason      :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  object_id   :integer
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reason: MyString
+  object_id: 1
+  object_type: MyString
+
+two:
+  reason: MyString
+  object_id: 1
+  object_type: MyString

@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: identifiers
+#
+#  id                :bigint           not null, primary key
+#  identifiable_type :string
+#  slug              :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  identifiable_id   :integer
+#
+# Indexes
+#
+#  index_identifiers_on_slug  (slug) UNIQUE
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  identifiable_id: 1
+  identifiable_type: MyString
+  slug: MyString
+
+two:
+  identifiable_id: 1
+  identifiable_type: MyString
+  slug: MyString

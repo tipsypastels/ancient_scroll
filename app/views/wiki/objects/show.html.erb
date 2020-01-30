@@ -1,0 +1,13 @@
+<% cache @object do %>
+  <%= render partial: 'wiki/objects/infobox', locals: { infobox: infobox_for(@object) } %>
+
+  <% unless @object.canonicity.canon? %>
+    <div class="note">
+      <strong>This article describes content not considered to be canon.</strong> <%= @object.canonicity.reason %>
+    </div>
+  <% end %>
+
+  <span class="visible-links">
+    <%= @object.canonical_content %>
+  </span>
+<% end %>

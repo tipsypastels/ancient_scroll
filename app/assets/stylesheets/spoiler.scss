@@ -1,0 +1,4 @@
+.spoiler:not(.spoiled) {
+  filter: blur(2.5px);
+  cursor: pointer;
+}

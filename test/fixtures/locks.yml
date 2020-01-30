@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: locks
+#
+#  id            :bigint           not null, primary key
+#  lockable_type :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  lockable_id   :integer
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lockable_id: 1
+  lockable_type: MyString
+
+two:
+  lockable_id: 1
+  lockable_type: MyString

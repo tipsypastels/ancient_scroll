@@ -1,0 +1,21 @@
+<aside class="infobox">
+  <%= image_tag infobox.image, class: 'infobox__image' if infobox.image? %>
+
+  <h2 class="infobox__name">
+    <%= infobox.name %>
+  </h2>
+
+  <div class="infobox__properties visible-links">
+    <% infobox.properties.each do |name, value| %>
+      <div class="infobox__properties__property">
+        <h4 class="infobox__properties__property__name">
+          <%= name %>
+        </h4>
+        
+        <div class="infobox__properties__property_value">
+          <%= value %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</aside>

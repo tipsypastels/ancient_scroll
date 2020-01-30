@@ -9,7 +9,15 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body style="<%= body_variables %>">
+    <header>
+      <%= link_to 'TODO', class: 'brand' do %>
+        <%= Wiki.config.name %>
+      <% end %>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

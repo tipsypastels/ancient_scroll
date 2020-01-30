@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import '**/*';
+
+body {
+  --body-font: Lato;
+  --text-color: #333;
+  --sub-text-color: #666;
+  --background-color: white;
+
+  padding: 0;
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font-family: var(--body-font);
+
+  & > header {
+    box-shadow: 2px 2px 2px rgba(black, 0.25);
+    padding: 0.5rem;
+
+    & > .brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+  }
+  
+  & > main {
+    width: 900px;
+    max-width: 100%;
+    margin: auto;
+    margin-top: 3rem;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  .visible-links & {
+    color: var(--primary-color);
+  }
+}
+
+small {
+  color: var(--sub-text-color);
+}

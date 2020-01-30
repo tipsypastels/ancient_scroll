@@ -1,3 +1,18 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    get '/config', to: 'config#edit'
+    post '/config', to: 'config#update'
+  end
+
+  namespace :wiki do
+    root to: 'welcome#index', as: :welcome
+    get '/categories/:object_type', to: 'objects#index', as: :objects
+
+    get '/:id', to: 'objects#show', as: :object
+    get '/:id/edit', to: 'objects#edit', as: :edit_object
+    patch '/:id', to: 'objects#update' 
+
+    get '/new', to: 'objects#new', as: :new_object
+    post '/', to: 'objects#create'
+  end
 end

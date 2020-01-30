@@ -1,0 +1,11 @@
+# What to call your wiki.
+name: My Wiki Name
+
+# Description for HTML metadata.
+description: A wiki.
+
+# Who can sign up for accounts? (private or public)
+access: public
+
+# Colour of the interface.
+primary_color: "#A80A00"
