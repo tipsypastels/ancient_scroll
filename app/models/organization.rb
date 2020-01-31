@@ -13,4 +13,8 @@ class Organization < ApplicationRecord
 
   has_many :organization_memberships
   has_many :members, through: :organization_memberships, class_name: 'Character', source: :character
+
+  def memberships
+    organization_memberships
+  end
 end

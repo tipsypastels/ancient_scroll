@@ -12,11 +12,17 @@ class Wiki
     instance.config
   end
 
+  class << self 
+    delegate :object_locator, to: :instance
+  end
+
   cattr_accessor :singleton
-  attr_reader :config
+  attr_reader :config, :object_locator
 
   def initialize
     @config = Config.new(YAML.load(File.read(CONFIG_FILE)))
     @config.validate!
+    
+    @object_locator = Object::Locator.new
   end
 end

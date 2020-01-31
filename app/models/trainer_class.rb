@@ -14,6 +14,6 @@ class TrainerClass < ApplicationRecord
   has_many :characters
 
   api_accessible :show do |api|
-    api.add :characters
+    api.add :characters, template: :index
   end
 end

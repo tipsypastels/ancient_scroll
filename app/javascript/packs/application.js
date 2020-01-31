@@ -19,3 +19,7 @@ require("channels")
 require("trix")
 require("@rails/actiontext")
 require('./handlers')
+require('../../../lib/assets/fa');
+
+window.$ = require('jquery');
+window.jQuery = window.$;

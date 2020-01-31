@@ -9,3 +9,9 @@ access: public
 
 # Colour of the interface.
 primary_color: "#A80A00"
+
+# Sidebar primary icon. Must be a Font Awesome icon.
+primary_icon: dragon
+
+# (Optional) Github url of your hack.
+github_url: https://github.com/tipsypastels/pokegnosis

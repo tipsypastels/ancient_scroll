@@ -10,13 +10,18 @@
   </div>
 
   <div class="field">
+    <%= f.label :story_role %>
+    <%= f.select :story_role, Character.story_roles.keys.map { |r| [r.humanize, r] } %>
+  </div>
+
+  <div class="field">
     <%= f.label :age %>
     <%= f.number_field :age %>
   </div>
 
   <div class="field">
     <%= f.label :gender %>
-    <%= f.select :gender, [['Unset', nil]] + Character.genders.keys.map { |w| [w.humanize, w]} %>
+    <%= f.select :gender, [['Unknown', nil]] + Character.genders.keys.map { |w| [w.humanize, w]} %>
   </div>
 
   <div class="field">
@@ -25,10 +30,21 @@
   </div>
 
   <div class="field">
+    <%= f.label :hometown_id %>
+    <%= f.select :hometown_id, [['Unknown', nil]] + Location.published.habitable.map { |l| [l.name, l.id] } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :trainer_class_id %>
+    <%= f.select :trainer_class_id, [['Unknown', nil]] + TrainerClass.published.map { |t| [t.name, t.id, 'data-specialty': t.specialty] } %>
+  </div>
+
+  <div class="field">
     <%= f.rich_text_area :content %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'button--primary' %>
+    <%= button_to 'Nevermind', character.path %>
   </div>
 <% end %>

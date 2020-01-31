@@ -10,14 +10,40 @@
   </head>
 
   <body style="<%= body_variables %>">
-    <header>
+    <aside>
       <%= link_to 'TODO', class: 'brand' do %>
-        <%= Wiki.config.name %>
+        <%= fa Wiki.config.primary_icon %>
       <% end %>
-    </header>
+
+      <nav>
+        <%= wiki_object_type_path('Regions') %>
+        <%= wiki_object_type_path('Locations') %>
+        <%= wiki_object_type_path('Quests') %>
+
+        <%= divider %>
+
+        <%= wiki_object_type_path('Characters') %>
+        <%= wiki_object_type_path('Organizations') %>
+        <%= wiki_object_type_path('Trainer Classes', 'trainer_class') %>
+
+        <%= divider %>
+
+        <%= wiki_object_type_path('Pokémon', 'pokemon') %>
+        <%= wiki_object_type_path('Abilities') %>
+        <%= wiki_object_type_path('Moves') %>
+
+        <%= divider %>
+
+        <%= link_to 'FAQ', '/faq' %>
+        <%= link_to 'Creators', '/creators' %>
+        <%= link_to 'Github', Wiki.config.github_url if Wiki.config.github_url %>
+      </nav>
+    </aside>
 
     <main>
-      <%= yield %>
+      <div class="main__content">
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>

@@ -20,8 +20,8 @@ class Wiki::Object::CanonicalContent
   SPOILER_REGEX = /\bSPOILER\((.+?)\)/
 
   def to_s
-    @string ||= @content.to_s
-      .gsub(LINK_REGEX) { replace_object_links($1, $2) }
+    @string ||= content.to_s
+      .gsub(Wiki.object_locator.regex(exclude: object.name)) { wrap_object_name($1) }
       .gsub(SPOILER_REGEX) { wrap_spoilers($1) }
       .html_safe
   end
@@ -29,6 +29,14 @@ class Wiki::Object::CanonicalContent
   private
 
   attr_reader :object, :content, :links
+
+  # TODO dont do this inside html tags
+  def wrap_object_name(name)
+    slug = Wiki.object_locator.locate(name)
+    return name unless slug
+
+    "<a href=\"#{wiki_object_path(slug)}\">#{name}</a>"
+  end
 
   def replace_object_links(object_name, name)
     object_type = OBJECT_LINKS[object_name]

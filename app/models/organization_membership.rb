@@ -13,20 +13,27 @@
 
 class OrganizationMembership < ApplicationRecord
   default_scope {
-    order('former desc')
+    order('former desc, role asc')
   }
 
   belongs_to :character
   belongs_to :organization
 
-  delegate :name, :path, to: :organization
+  delegate :name, :path, :api_path, to: :organization
 
   acts_as_api
 
   api_accessible :index do |api|
+    api.add :type
+    api.add :organization_id
     api.add :former?
     api.add :role
     api.add :name
     api.add :path
+    api.add :api_path
+  end
+
+  def type
+    'organization_membership'
   end
 end

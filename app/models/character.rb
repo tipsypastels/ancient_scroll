@@ -7,6 +7,7 @@
 #  gender           :integer
 #  name             :string
 #  specialty        :string
+#  story_role       :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  hometown_id      :integer
@@ -15,6 +16,10 @@
 
 class Character < ApplicationRecord
   include Wiki::Object
+
+  default_scope {
+    order(story_role: :desc)
+  }
 
   has_many :character_presences
   has_many :locations, through: :character_presences
@@ -25,6 +30,15 @@ class Character < ApplicationRecord
   belongs_to :trainer_class, optional: true
   belongs_to :hometown, class_name: 'Location', optional: true
 
+  validates :story_role, presence: true
+
+  enum story_role: {
+    npc:         0,
+    boss:        1,
+    main_cast:   2,
+    protagonist: 3,
+  }
+
   enum gender: {
     female:    0,
     male:      1,
@@ -32,6 +46,7 @@ class Character < ApplicationRecord
   }
 
   api_accessible :show do |api|
+    api.add :story_role
     api.add :age
     api.add :gender
     api.add :pronouns
@@ -57,7 +72,11 @@ class Character < ApplicationRecord
     super.presence || trainer_class&.specialty
   end
 
+  def membership_in(organization)
+    organization_memberships.find_by(organization: organization)
+  end
+
   def modifiable_properties
-    %i|age gender trainer_class specialty|
+    %i|age gender trainer_class_id hometown_id specialty story_role|
   end
 end

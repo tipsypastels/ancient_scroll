@@ -1,13 +1,23 @@
 <% cache @object do %>
   <%= render partial: 'wiki/objects/infobox', locals: { infobox: infobox_for(@object) } %>
 
+  <div class="title-bar visible-links">
+    <h1 class="title-bar__heading">
+      <%= @object.name %>
+    </h1>
+
+    <nav class="title-bar__nav">
+       <%= link_to 'Edit', wiki_edit_object_path(@object.slug) %>
+    </nav>
+  </div>
+
   <% unless @object.canonicity.canon? %>
     <div class="note">
       <strong>This article describes content not considered to be canon.</strong> <%= @object.canonicity.reason %>
     </div>
   <% end %>
 
-  <span class="visible-links">
+  <div class="visible-links">
     <%= @object.canonical_content %>
-  </span>
+  </div>
 <% end %>

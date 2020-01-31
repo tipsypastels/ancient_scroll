@@ -8,13 +8,26 @@ module InfoboxHelper
 
   INFOBOX_PROPERTIES = {
     character: ->(builder, character) {
+      builder.add('Story Role', character.story_role&.humanize)
       builder.add('Age', character.age, default: 'Unknown')
       builder.add('Gender', character.gender&.humanize, default: 'Unknown')
-      builder.add('Hometown', link_to_relation_if_present(character.hometown))
+      builder.add('Hometown', link_to_relation_if_present(character.hometown), default: 'Unknown')
       builder.add('Trainer Class', link_to_relation_if_present(character.trainer_class))
       builder.add('Specialty', character.specialty)
       builder.add('Allegiance', create_organization_memberships(character.organization_memberships))
-    }
+    },
+    location: ->(builder, location) {
+      builder.add('Region', location.region.name)
+      builder.add('Map Type', location.map_type.humanize)
+      builder.add('Population', location.population) if location.habitable?
+      builder.add('Notable Residents', create_character_list(location.residents))
+    },
+    organization: ->(builder, org) {
+      builder.add('Notable Members', create_character_list(org.members) { |character| 
+        return unless membership = character.membership_in(org)
+        [membership.former ? 'Former' : nil, membership.role].compact.join(' ')
+      })
+    },
   }.with_indifferent_access
 
   private
@@ -33,5 +46,24 @@ module InfoboxHelper
       html
     }.join(', ')
      .html_safe
+  end
+
+  def create_character_list(characters)
+    return unless characters.present?
+
+    <<~HTML.html_safe
+      <ul>
+      #{characters.map { |character|
+          context = yield(character) if block_given?
+
+          <<~HTML
+            <li>
+              #{link_to(character.name, character.path)} 
+              #{"(#{context})" if context.present?}
+            </li>
+          HTML
+        }.join}
+      </ul>
+    HTML
   end
 end

@@ -1,8 +1,9 @@
 import $ from 'jquery';
 
-$(window).on('load turbolinks:load', () => {
+$(window).on('turbolinks:load', () => {
   $('.spoiler').click(function(e) {
-    e.preventDefault();
+    if (!this.classList.contains('spoiled'))
+      e.preventDefault();
     this.classList.add('spoiled');
   });
 });

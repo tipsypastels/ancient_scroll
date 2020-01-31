@@ -1,0 +1,12 @@
+.title-bar {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--box-border-color);
+  margin-bottom: 1rem;
+  padding-bottom: 4px;
+
+  & > .title-bar__heading {
+    flex-grow: 1;
+    margin: 0;
+  }
+}

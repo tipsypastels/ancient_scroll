@@ -98,9 +98,7 @@ module Wiki::Object
   end
 
   def to_form_locals
-    hash = {}
-    hash[type.to_sym] = self
-    hash
+    {}.tap { |h| h[type.to_sym] = self}
   end
 
   private

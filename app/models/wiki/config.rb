@@ -6,6 +6,8 @@ class Wiki::Config
     description: { validates: { presence: true } },
     access: { validates: { presence: { in: %i|public private| } }, inquire: true },
     primary_color: { validates: { presence: true } },
+    primary_icon: { validates: { presence: true } },
+    github_url: {},
   }
 
   FIELDS.each do |field, opts|

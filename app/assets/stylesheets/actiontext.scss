@@ -3,11 +3,13 @@
 // the trix-editor content (whether displayed or under editing). Feel free to incorporate this
 // inclusion directly in any other asset bundle and remove this file.
 //
-//= require trix/dist/trix
+// = require trix/dist/trix
 
 // We need to override trix.css’s image gallery styles to accommodate the
 // <action-text-attachment> element we wrap around attachments. Otherwise,
 // images in galleries will be squished by the max-width: 33%; rule.
+@import 'trix/dist/trix';
+
 .trix-content {
   .attachment-gallery {
     > action-text-attachment,
@@ -31,6 +33,47 @@
     .attachment {
       padding: 0 !important;
       max-width: 100% !important;
+      width: unset !important;
+      margin: 0;
+
+      .attachment__caption {
+        font-size: 0.75rem;
+        color: var(--sub-text-color);
+      }
     }
   }
+}
+
+.trix-button-row {
+  border: 1px solid #ccc;
+
+  .trix-button-group {
+    border: none !important;
+    margin-bottom: 0 !important;
+
+    button {
+      border-bottom: none !important;
+    }
+  }
+}
+
+trix-editor {
+  border-top: none !important;
+}
+
+trix-editor, .trix-content {
+  .attachment {
+    padding: 0 !important;
+    max-width: 100% !important;
+    margin: 0;
+
+    .attachment__caption {
+      font-size: 0.75rem;
+      color: var(--sub-text-color);
+    }
+  }
+}
+
+trix-editor .attachment__caption:not(.attachment__caption--edited):not(.attachment__caption--editing) {
+  display: none;
 }

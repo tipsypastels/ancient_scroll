@@ -7,6 +7,7 @@
 #  gender           :integer
 #  name             :string
 #  specialty        :string
+#  story_role       :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  hometown_id      :integer
