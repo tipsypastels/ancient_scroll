@@ -1,5 +1,12 @@
 class Wiki::Object::Locator
-  OBJECT_TYPES = [Character, Location, Region, Item, TrainerClass, Organization]
+  OBJECT_TYPES = [
+    Wiki::Character, 
+    Wiki::Location, 
+    Wiki::Region, 
+    Wiki::Item, 
+    Wiki::TrainerClass, 
+    Wiki::Organization,
+  ]
 
   def initialize
     recache!
@@ -10,7 +17,7 @@ class Wiki::Object::Locator
     @regex_cache = {}
 
     OBJECT_TYPES.each do |type|
-      type.published.each(&method(:add))
+      type.find_each(&method(:add))
     end
   end
 

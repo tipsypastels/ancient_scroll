@@ -10,7 +10,7 @@
 #  object_id   :integer
 #
 
-class NonCanonicity < ApplicationRecord
+class Wiki::NonCanonicity < ApplicationRecord
   belongs_to :object, polymorphic: true
 
   acts_as_api

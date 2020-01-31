@@ -8,13 +8,14 @@
 #  name             :string
 #  specialty        :string
 #  story_role       :integer
+#  updated_by       :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  hometown_id      :integer
 #  trainer_class_id :integer
 #
 
-class Character < ApplicationRecord
+class Wiki::Character < ApplicationRecord
   include Wiki::Object
 
   default_scope {
@@ -28,7 +29,7 @@ class Character < ApplicationRecord
   has_many :organizations, through: :organization_memberships
 
   belongs_to :trainer_class, optional: true
-  belongs_to :hometown, class_name: 'Location', optional: true
+  belongs_to :hometown, class_name: 'Wiki::Location', optional: true
 
   validates :story_role, presence: true
 

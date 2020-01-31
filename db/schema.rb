@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_070625) do
+ActiveRecord::Schema.define(version: 2020_01_31_100422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,13 +64,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_070625) do
     t.integer "hometown_id"
     t.integer "trainer_class_id"
     t.integer "story_role"
-  end
-
-  create_table "drafts", force: :cascade do |t|
-    t.integer "draftable_id"
-    t.string "draftable_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "updated_by"
   end
 
   create_table "identifiers", force: :cascade do |t|
@@ -92,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_070625) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
+    t.integer "updated_by"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -101,13 +96,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_070625) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "population"
     t.integer "map_type"
-  end
-
-  create_table "locks", force: :cascade do |t|
-    t.integer "lockable_id"
-    t.string "lockable_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "updated_by"
   end
 
   create_table "non_canonicities", force: :cascade do |t|
@@ -131,18 +120,21 @@ ActiveRecord::Schema.define(version: 2020_01_31_070625) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "updated_by"
   end
 
   create_table "pages", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "updated_by"
   end
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "updated_by"
   end
 
   create_table "trainer_classes", force: :cascade do |t|
@@ -150,6 +142,23 @@ ActiveRecord::Schema.define(version: 2020_01_31_070625) do
     t.string "specialty"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "updated_by"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
+    t.string "slug"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

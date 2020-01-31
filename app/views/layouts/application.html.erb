@@ -34,9 +34,9 @@
 
         <%= divider %>
 
-        <%= link_to 'FAQ', '/faq' %>
-        <%= link_to 'Creators', '/creators' %>
-        <%= link_to 'Github', Wiki.config.github_url if Wiki.config.github_url %>
+        <%= active_link_to 'FAQ', '/faq' %>
+        <%= active_link_to 'Creators', '/creators' %>
+        <%= active_link_to 'Github', Wiki.config.github_url if Wiki.config.github_url %>
       </nav>
     </aside>
 

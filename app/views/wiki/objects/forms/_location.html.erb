@@ -28,12 +28,12 @@
 
   <div class="field">
     <%= f.label :region_id %>
-    <%= f.select :region_id, Region.all.map { |r| [r.name, r.id] } %>
+    <%= f.select :region_id, Wiki::Region.all.map { |r| [r.name, r.id] } %>
   </div>
 
   <div class="field">
     <%= f.label :map_type %>
-    <%= f.select :map_type, Location.map_types.keys.map { |m| [m.humanize, m, 'data-habitable': Location.habitable?(m) ]} %>
+    <%= f.select :map_type, Wiki::Location.map_types.keys.map { |m| [m.humanize, m, 'data-habitable': Wiki::Location.habitable?(m) ]} %>
   </div>
 
   <div class="field" data-if-habitable style="<%= 'display: none' unless location.habitable? %>">

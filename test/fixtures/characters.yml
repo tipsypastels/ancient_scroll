@@ -8,6 +8,7 @@
 #  name             :string
 #  specialty        :string
 #  story_role       :integer
+#  updated_by       :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  hometown_id      :integer

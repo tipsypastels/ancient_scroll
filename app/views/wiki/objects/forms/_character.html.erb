@@ -11,7 +11,7 @@
 
   <div class="field">
     <%= f.label :story_role %>
-    <%= f.select :story_role, Character.story_roles.keys.map { |r| [r.humanize, r] } %>
+    <%= f.select :story_role, Wiki::Character.story_roles.keys.map { |r| [r.humanize, r] } %>
   </div>
 
   <div class="field">
@@ -21,7 +21,7 @@
 
   <div class="field">
     <%= f.label :gender %>
-    <%= f.select :gender, [['Unknown', nil]] + Character.genders.keys.map { |w| [w.humanize, w]} %>
+    <%= f.select :gender, [['Unknown', nil]] + Wiki::Character.genders.keys.map { |w| [w.humanize, w]} %>
   </div>
 
   <div class="field">
@@ -31,12 +31,12 @@
 
   <div class="field">
     <%= f.label :hometown_id %>
-    <%= f.select :hometown_id, [['Unknown', nil]] + Location.published.habitable.map { |l| [l.name, l.id] } %>
+    <%= f.select :hometown_id, [['Unknown', nil]] + Wiki::Location.habitable.map { |l| [l.name, l.id] } %>
   </div>
 
   <div class="field">
     <%= f.label :trainer_class_id %>
-    <%= f.select :trainer_class_id, [['Unknown', nil]] + TrainerClass.published.map { |t| [t.name, t.id, 'data-specialty': t.specialty] } %>
+    <%= f.select :trainer_class_id, [['Unknown', nil]] + Wiki::TrainerClass.map { |t| [t.name, t.id, 'data-specialty': t.specialty] } %>
   </div>
 
   <div class="field">

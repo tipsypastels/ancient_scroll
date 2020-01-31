@@ -11,7 +11,7 @@
 #  organization_id :integer
 #
 
-class OrganizationMembership < ApplicationRecord
+class Wiki::OrganizationMembership < ApplicationRecord
   default_scope {
     order('former desc, role asc')
   }
@@ -34,6 +34,6 @@ class OrganizationMembership < ApplicationRecord
   end
 
   def type
-    'organization_membership'
+    'organization_membership'.freeze
   end
 end

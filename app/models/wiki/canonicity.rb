@@ -1,4 +1,4 @@
-class Canonicity
+class Wiki::Canonicity
   extend ActsAsApi::Base
 
   acts_as_api

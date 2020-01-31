@@ -15,4 +15,12 @@ Rails.application.routes.draw do
     get '/new', to: 'objects#new', as: :new_object
     post '/', to: 'objects#create'
   end
+
+  devise_for :users,
+    path: '',
+    path_names: {
+      sign_in: 'login',
+      sign_out: 'logout',
+      sign_up: 'register',
+    }
 end

@@ -10,7 +10,7 @@
 #  location_id  :integer
 #
 
-class CharacterPresence < ApplicationRecord
+class Wiki::CharacterPresence < ApplicationRecord
   belongs_to :character
   belongs_to :location
 end

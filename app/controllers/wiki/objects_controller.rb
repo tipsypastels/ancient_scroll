@@ -9,7 +9,7 @@ class Wiki::ObjectsController < ApplicationController
       return
     end
 
-    @objects = object_type.published.paginate(page: params[:page])
+    @objects = object_type.paginate(page: params[:page])
 
     respond_to do |format|
       format.html
@@ -42,11 +42,11 @@ class Wiki::ObjectsController < ApplicationController
   private
 
   def set_object
-    @object = Identifier.find_identifiable(params[:id])
+    @object = Wiki::Identifier.find_identifiable(params[:id])
   end
 
   def object_params
-    params.require(@object.type.to_sym)
+    params.require(:"wiki_#{@object.type}")
           .permit(:name, :image, :content, *@object.modifiable_properties)
   end
 end

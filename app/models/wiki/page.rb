@@ -4,9 +4,10 @@
 #
 #  id         :bigint           not null, primary key
 #  name       :string
+#  updated_by :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Page < ApplicationRecord
+class Wiki::Page < ApplicationRecord
 end

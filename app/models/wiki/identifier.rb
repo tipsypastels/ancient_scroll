@@ -14,7 +14,7 @@
 #  index_identifiers_on_slug  (slug) UNIQUE
 #
 
-class Identifier < ApplicationRecord
+class Wiki::Identifier < ApplicationRecord
   def self.find_identifiable(id)
     identifier = friendly.find(id)
     identifier.identifiable_type.constantize.find(identifier.identifiable_id)

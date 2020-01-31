@@ -6,12 +6,13 @@
 #  map_type   :integer
 #  name       :string
 #  population :integer
+#  updated_by :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  region_id  :integer
 #
 
-class Location < ApplicationRecord
+class Wiki::Location < ApplicationRecord
   include Wiki::Object
 
   def self.habitable?(map_type)
@@ -29,7 +30,7 @@ class Location < ApplicationRecord
   has_many :character_presences
   has_many :characters, through: :character_presences
 
-  has_many :residents, class_name: 'Character', foreign_key: :hometown_id
+  has_many :residents, class_name: 'Wiki::Character', foreign_key: :hometown_id
 
   has_many :item_presences
   has_many :items, through: :item_presences
@@ -53,6 +54,7 @@ class Location < ApplicationRecord
     api.add :region, template: :index
     api.add :characters, template: :index
     api.add :items, template: :index
+    api.add :residents, template: :index
   end
 
   def habitable?

@@ -2,11 +2,12 @@
 #
 # Table name: items
 #
-#  id   :bigint           not null, primary key
-#  name :string
+#  id         :bigint           not null, primary key
+#  name       :string
+#  updated_by :integer
 #
 
-class Item < ApplicationRecord
+class Wiki::Item < ApplicationRecord
   include Wiki::Object
 
   has_many :item_presences
