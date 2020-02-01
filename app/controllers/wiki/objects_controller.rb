@@ -1,22 +1,7 @@
 class Wiki::ObjectsController < ApplicationController
-  before_action :set_object, except: %i|index new create|
+  before_action :set_object
+  before_action :authenticate_editor!, except: %i|show|
   
-  def index
-    begin
-      object_type = params[:object_type].classify.constantize
-    rescue
-      head :unprocessable_entity
-      return
-    end
-
-    @objects = object_type.paginate(page: params[:page])
-
-    respond_to do |format|
-      format.html
-      format.json { render_for_api :index, json: @objects }
-    end
-  end
-
   def show
     respond_to do |format|
       format.html
@@ -42,7 +27,11 @@ class Wiki::ObjectsController < ApplicationController
   private
 
   def set_object
-    @object = Wiki::Identifier.find_identifiable(params[:id])
+    if Wiki::Sheet::Intrinsic.match?(request.path)
+      @object = Wiki::Sheet::Intrinsic.find_sheet(params[:id])
+    else
+      @object = Wiki::Identifier.find_identifiable(params[:id])
+    end
   end
 
   def object_params

@@ -5,7 +5,7 @@ module Wiki::Object::Identifiable
     has_one :identifier, as: :identifiable
 
     after_create :create_identifier
-    delegate :slug, to: :identifier
+    delegate :slug, to: :identifier, allow_nil: true
   end
 
   private

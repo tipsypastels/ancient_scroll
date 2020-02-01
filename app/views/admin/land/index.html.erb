@@ -1,0 +1,21 @@
+<div class="title-bar visible-links">
+  <h1 class="title-bar__heading">
+    Adminland
+  </h1>
+</div>
+
+<h3>Who's an admin?</h3>
+
+<ul class="visible-links">
+  <% @admins.each do |admin| %>
+    <li>
+      <%= link_to admin.username, admin.path %>
+    </li>
+  <% end %>
+</ul>
+
+<% if Current.admin %>
+  <h3>You're an admin, so you can...</h3>
+<% else %>
+  <h3>Nudge an admin to...</h3>
+<% end %>

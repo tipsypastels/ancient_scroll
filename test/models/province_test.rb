@@ -1,13 +1,18 @@
 # == Schema Information
 #
-# Table name: pages
+# Table name: provinces
 #
 #  id         :bigint           not null, primary key
 #  name       :string
-#  updated_by :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  region_id  :integer
 #
 
-class Wiki::Page < ApplicationRecord
+require 'test_helper'
+
+class ProvinceTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

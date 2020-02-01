@@ -4,7 +4,10 @@ name: My Wiki Name
 # Description for HTML metadata.
 description: A wiki.
 
-# Who can sign up for accounts? (private or public)
+# Who can sign up for accounts? (open | public | private)
+# open - anyone can edit or create unlocked pages, no account required
+# public - any signed in user can edit or create unlocked pages
+# private - users must be promoted to admin before they can edit or create anything
 access: public
 
 # Colour of the interface.
@@ -15,3 +18,6 @@ primary_icon: dragon
 
 # (Optional) Github url of your hack.
 github_url: https://github.com/tipsypastels/pokegnosis
+
+# (Optional) Enable per-region "provinces"
+provinces: false

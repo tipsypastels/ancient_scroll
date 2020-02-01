@@ -31,6 +31,14 @@
     <%= f.select :region_id, Wiki::Region.all.map { |r| [r.name, r.id] } %>
   </div>
 
+  <!-- TODO narorw this down to provinces of the selected region -->
+  <% if Wiki.config.provinces? %>
+    <div class="field">
+      <%= f.label :province_id %>
+      <%= f.select :province_id, Wiki::Province.all.map { |r| [r.name, r.id] } %>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :map_type %>
     <%= f.select :map_type, Wiki::Location.map_types.keys.map { |m| [m.humanize, m, 'data-habitable': Wiki::Location.habitable?(m) ]} %>

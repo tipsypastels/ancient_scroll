@@ -1,0 +1,12 @@
+.tag {
+  color: white;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 0.85rem;
+
+  &.tag--note {
+    color: var(--text-color);
+    background-color: var(--note-color);
+  }
+}

@@ -5,4 +5,8 @@ class Current < ActiveSupport::CurrentAttributes
   def user_id
     user&.id
   end
+
+  def admin
+    user if user&.admin?
+  end
 end

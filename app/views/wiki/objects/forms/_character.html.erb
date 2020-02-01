@@ -36,7 +36,7 @@
 
   <div class="field">
     <%= f.label :trainer_class_id %>
-    <%= f.select :trainer_class_id, [['Unknown', nil]] + Wiki::TrainerClass.map { |t| [t.name, t.id, 'data-specialty': t.specialty] } %>
+    <%= f.select :trainer_class_id, [['Unknown', nil]] + Wiki::TrainerClass.all.map { |t| [t.name, t.id, 'data-specialty': t.specialty] } %>
   </div>
 
   <div class="field">

@@ -13,7 +13,7 @@ module Wiki::Object::Linkable
   end
 
   def path
-    wiki_object_path(slug)
+    wiki_object_path(slug) if slug
   end
 
   def api_path

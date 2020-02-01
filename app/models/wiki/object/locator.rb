@@ -6,6 +6,7 @@ class Wiki::Object::Locator
     Wiki::Item, 
     Wiki::TrainerClass, 
     Wiki::Organization,
+    Wiki::Sheet,
   ]
 
   def initialize
@@ -17,7 +18,7 @@ class Wiki::Object::Locator
     @regex_cache = {}
 
     OBJECT_TYPES.each do |type|
-      type.find_each(&method(:add))
+      type.includes(:identifier).find_each(&method(:add))
     end
   end
 

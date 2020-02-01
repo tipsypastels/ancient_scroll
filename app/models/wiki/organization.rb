@@ -12,6 +12,8 @@
 class Wiki::Organization < ApplicationRecord
   include Wiki::Object
 
+  ICON = :users
+
   has_many :organization_memberships
   has_many :members, through: :organization_memberships, class_name: 'Wiki::Character', source: :character
 

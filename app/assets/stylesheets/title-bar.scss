@@ -10,6 +10,14 @@
     margin: 0;
   }
 
+  & > .title-bar__nav {
+    a {
+      &:not(:last-child) { 
+        padding-right: 0.25rem; 
+      }
+    }
+  }
+
   & + small {
     margin-bottom: 0.5rem;
     display: block;

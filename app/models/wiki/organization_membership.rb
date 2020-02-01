@@ -12,10 +12,6 @@
 #
 
 class Wiki::OrganizationMembership < ApplicationRecord
-  default_scope {
-    order('former desc, role asc')
-  }
-
   belongs_to :character
   belongs_to :organization
 

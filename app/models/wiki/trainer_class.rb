@@ -12,6 +12,9 @@
 
 class Wiki::TrainerClass < ApplicationRecord
   include Wiki::Object
+
+  ICON = :certificate
+
   has_many :characters
 
   api_accessible :show do |api|

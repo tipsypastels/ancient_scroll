@@ -1,0 +1,21 @@
+<% cache @objects do %>
+  <div class="title-bar visible-links">
+    <h1 class="title-bar__heading">
+      <%= @category %>
+    </h1>
+
+    <nav class="title-bar__nav">
+      <%= link_to wiki_new_object_path(params[:object_type]), class: 'button' do %>
+        New <%= @category.singularize %>
+      <% end %>
+    </nav>
+  </div>
+
+  <div class="object-category-top4">
+    <%= render partial: 'wiki/object_categories/top4', collection: @top4, as: :object %>
+  </div>
+
+  <div class="object-category-list">
+    <%= render partial: 'wiki/object_categories/list_item', collection: @list, as: :object %>
+  </div>
+<% end %>

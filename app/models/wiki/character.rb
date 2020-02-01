@@ -18,7 +18,10 @@
 class Wiki::Character < ApplicationRecord
   include Wiki::Object
 
-  default_scope {
+  ICON = :portrait
+  MODIFIABLE_PROPERTIES = %i|age gender trainer_class_id hometown_id specialty story_role|
+
+  scope :ordered_by_story_role, -> {
     order(story_role: :desc)
   }
 
@@ -35,9 +38,10 @@ class Wiki::Character < ApplicationRecord
 
   enum story_role: {
     npc:         0,
-    boss:        1,
-    main_cast:   2,
-    protagonist: 3,
+    quest_giver: 1,
+    boss:        2,
+    main_cast:   3,
+    protagonist: 4,
   }
 
   enum gender: {
@@ -75,9 +79,5 @@ class Wiki::Character < ApplicationRecord
 
   def membership_in(organization)
     organization_memberships.find_by(organization: organization)
-  end
-
-  def modifiable_properties
-    %i|age gender trainer_class_id hometown_id specialty story_role|
   end
 end

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Wiki::Configurable
+  include Wiki::Access, Wiki::Configurable
 
   before_action :set_currents
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -19,5 +19,9 @@ class ApplicationController < ActionController::Base
     Current.request_id = request.uuid
     Current.user_agent = request.user_agent
     Current.ip_address = request.ip
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
 end

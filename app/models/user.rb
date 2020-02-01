@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  admin                  :boolean          default(FALSE)
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  remember_created_at    :datetime
@@ -22,11 +23,35 @@
 #
 
 class User < ApplicationRecord
+  scope :admins, -> { where(admin: true) }
+
+  include Rails.application.routes.url_helpers
+  def default_url_options; {}; end
+
   extend FriendlyId
   friendly_id :username, use: :slugged
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  acts_as_api
+  
+  api_accessible :index do |api|
+    api.add :id
+    api.add :username
+    api.add :slug
+    api.add :path
+    api.add :api_path
+  end
+
+  api_accessible :show, extend: :index do |api|
+  end
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def path
+    user_path(slug)
+  end
+
+  def api_path
+    path + '?format=json'
+  end
 end

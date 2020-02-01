@@ -17,13 +17,14 @@ module InfoboxHelper
       builder.add('Allegiance', create_organization_memberships(character.organization_memberships))
     },
     location: ->(builder, location) {
-      builder.add('Region', location.region.name)
+      builder.add('Region', link_to_relation_if_present(location.region))
+      builder.add('Province', link_to_relation_if_present(location.province)) if Wiki.config.provinces?
       builder.add('Map Type', location.map_type.humanize)
       builder.add('Population', location.population) if location.habitable?
-      builder.add('Notable Residents', create_character_list(location.residents))
+      builder.add('Notable Residents', create_character_list(location.residents.as_list))
     },
     organization: ->(builder, org) {
-      builder.add('Notable Members', create_character_list(org.members) { |character| 
+      builder.add('Notable Members', create_character_list(org.members.as_list) { |character| 
         return unless membership = character.membership_in(org)
         [membership.former ? 'Former' : nil, membership.role].compact.join(' ')
       })

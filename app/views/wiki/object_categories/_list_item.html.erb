@@ -1,0 +1,21 @@
+<%= link_to object.path, class: 'object-list-item' do %>
+  <div class="object-list-item__image" style="background-image: url(<%= object.image_path %>)">
+    <%= fa object.class.icon, group: :fal unless object.image_path %>
+  </div>
+
+  <div class="object-list-item__heading">
+    <div class="object-list-item__heading__name">
+      <%= object.name %>
+
+      <% unless object.canonicity.canon? %>
+        <span class="tag tag--note">
+          Non-Canon
+        </span>
+      <% end %>
+    </div>
+
+    <small class="object-top4__heading__updated">
+      Updated <%= time_ago_in_words(object.updated_at) %> ago
+    </small>
+  </div>
+<% end %>

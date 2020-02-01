@@ -2,18 +2,22 @@
 #
 # Table name: locations
 #
-#  id         :bigint           not null, primary key
-#  map_type   :integer
-#  name       :string
-#  population :integer
-#  updated_by :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  region_id  :integer
+#  id          :bigint           not null, primary key
+#  map_type    :integer
+#  name        :string
+#  population  :integer
+#  updated_by  :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  province_id :integer
+#  region_id   :integer
 #
 
 class Wiki::Location < ApplicationRecord
   include Wiki::Object
+
+  ICON = :city
+  MODIFIABLE_PROPERTIES = %i|region_id province_id population map_type|
 
   def self.habitable?(map_type)
     map_type.in? HABITABLE
@@ -26,6 +30,7 @@ class Wiki::Location < ApplicationRecord
   }
 
   belongs_to :region
+  belongs_to :province, optional: true
   
   has_many :character_presences
   has_many :characters, through: :character_presences
@@ -36,6 +41,7 @@ class Wiki::Location < ApplicationRecord
   has_many :items, through: :item_presences
 
   validates :map_type, presence: true
+  validates :province, presence: true, if: -> { Wiki.config.provinces? }
 
   enum map_type: {
     route:      0,
@@ -59,9 +65,5 @@ class Wiki::Location < ApplicationRecord
 
   def habitable?
     map_type.in? HABITABLE
-  end
-
-  def modifiable_properties
-    %i|region_id population map_type|
   end
 end

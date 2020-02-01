@@ -7,12 +7,12 @@ class Wiki::Object::PreparedContent
     @links   = {}
   end
 
-  SPOILER_REGEX = /\bSPOILER\((.+?)\)/
+  SPOILER_REGEX = /\b(MAJOR_)?SPOILER\((.+?)\)/
 
   def to_s
     @string ||= content.to_s
       .gsub(Wiki.object_locator.regex(exclude: object.name)) { wrap_object_name($1) }
-      .gsub(SPOILER_REGEX) { wrap_spoilers($1) }
+      .gsub(SPOILER_REGEX) { wrap_spoilers($2, $1.present?) }
       .html_safe
   end
 
@@ -27,7 +27,33 @@ class Wiki::Object::PreparedContent
     "<a href=\"#{wiki_object_path(slug)}\">#{name}</a>"
   end
 
-  def wrap_spoilers(content)
-    "<span title=\"Click to reveal spoiler.\" class=\"spoiler\">#{content}</span>"
+  def wrap_spoilers(content, major)
+    if major
+      <<~HTML
+        <div class="major-spoiler">
+          <h3 class="major-spoiler__title">
+            This section contains a major spoiler.
+          </h3>
+
+          <p class="major-spoiler__paragraph">
+            Reading this early may significantly impact your enjoyment of the game. If you have not completed the story, please avoid this.
+          </p>
+
+          <button class="major-spoiler__button">
+            Show Spoiler
+          </button>
+
+          <div class="major-spoiler__content">
+            #{content}
+          </div>
+        </div>
+      HTML
+    else
+      <<~HTML
+        <span title="Click to reveal spoiler." class="spoiler">
+          #{content}
+        </span>
+      HTML
+    end
   end
 end

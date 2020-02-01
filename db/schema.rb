@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_100422) do
+ActiveRecord::Schema.define(version: 2020_01_31_223112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_100422) do
     t.integer "population"
     t.integer "map_type"
     t.integer "updated_by"
+    t.integer "province_id"
   end
 
   create_table "non_canonicities", force: :cascade do |t|
@@ -123,11 +124,11 @@ ActiveRecord::Schema.define(version: 2020_01_31_100422) do
     t.integer "updated_by"
   end
 
-  create_table "pages", force: :cascade do |t|
+  create_table "provinces", force: :cascade do |t|
     t.string "name"
+    t.integer "region_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "updated_by"
   end
 
   create_table "regions", force: :cascade do |t|
@@ -135,6 +136,14 @@ ActiveRecord::Schema.define(version: 2020_01_31_100422) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "updated_by"
+  end
+
+  create_table "sheets", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "updated_by"
+    t.string "intrinsic_role"
   end
 
   create_table "trainer_classes", force: :cascade do |t|
@@ -155,6 +164,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_100422) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.string "slug"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true

@@ -1,0 +1,23 @@
+<% cache object do %>
+  <%= link_to object.path, class: 'object-top4' do %>
+    <div class="object-top4__banner" style="background-image: url(<%= object.image_path %>)">
+      <%= fa object.class.icon, group: :fal unless object.image_path %>
+
+      <% unless object.canonicity.canon? %>
+        <div class="tag tag--note object-top4__banner__non-canon">
+          Non-Canon
+        </div>
+      <% end %>
+    </div>
+
+    <div class="object-top4__heading">
+      <h1 class="object-top4__heading__name">
+        <%= object.name %>
+      </h1>
+
+      <small class="object-top4__heading__updated">
+        Updated <%= time_ago_in_words(object.updated_at) %> ago
+      </small>
+    </div>
+  <% end %>
+<% end %>

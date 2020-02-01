@@ -2,3 +2,39 @@
   filter: blur(2.5px);
   cursor: pointer;
 }
+
+.major-spoiler {
+  border-left: 4px solid crimson;
+  background-color: lighten(crimson, 20%);
+  color: mix(white, transparent, 75%);
+  padding: 0.75rem;
+  
+  & > .major-spoiler__title {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  & > .major-spoiler__paragraph {
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  & > .major-spoiler__button {
+    background-color: crimson;
+    color: white;
+  }
+
+  & > .major-spoiler__content {
+    display: none;
+
+    background-color: white;
+    color: var(--text-color);
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+  }
+
+  &.spoiled .major-spoiler__content {
+    display: block;
+  }
+}

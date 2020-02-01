@@ -11,6 +11,10 @@
 @import 'trix/dist/trix';
 
 .trix-content {
+  h1 {
+    margin-bottom: 0.75rem;
+  }
+
   .attachment-gallery {
     > action-text-attachment,
     > .attachment {
