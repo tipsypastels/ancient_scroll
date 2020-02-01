@@ -1,15 +1,5 @@
 <%= wiki_object_form(character) do |f, url| %>
   <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
     <%= f.label :story_role %>
     <%= f.select :story_role, Wiki::Character.story_roles.keys.map { |r| [r.humanize, r] } %>
   </div>
@@ -37,14 +27,5 @@
   <div class="field">
     <%= f.label :trainer_class_id %>
     <%= f.select :trainer_class_id, [['Unknown', nil]] + Wiki::TrainerClass.all.map { |t| [t.name, t.id, 'data-specialty': t.specialty] } %>
-  </div>
-
-  <div class="field">
-    <%= f.rich_text_area :content %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit class: 'button--primary' %>
-    <%= link_to 'Nevermind', url, class: 'button' %>
   </div>
 <% end %>

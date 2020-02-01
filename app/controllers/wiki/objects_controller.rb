@@ -74,6 +74,8 @@ class Wiki::ObjectsController < ApplicationController
     @singular_scope ||= scope.singularize
   end
 
+  MODIFIABLE_PROPERTIES = []
+
   def scope; self.class.const_get(:SCOPE).to_s; end
   def modifiable_properties; self.class.const_get(:MODIFIABLE_PROPERTIES); end
 

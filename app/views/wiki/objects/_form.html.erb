@@ -1,0 +1,22 @@
+<%= form_with model: object, url: url, builder: AsForm, class: "wiki-object-form #{opts.delete(:class)}", **opts do |f| %>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= yield f if block_given? %>
+
+  <div class="field">
+    <%= f.rich_text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: 'button--primary' %>
+    <%= link_to 'Nevermind', url, class: 'button' %>
+  </div>
+<% end %>

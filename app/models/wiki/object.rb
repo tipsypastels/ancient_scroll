@@ -15,6 +15,16 @@ module Wiki::Object
     }.with_indifferent_access
   end
 
+  def self.types_not_disabled
+    @types_not_disabled ||= types.reject { |_, v| v.disabled_in_config? }.to_h
+  end
+
+  class_methods do
+    def disabled_in_config?
+      false
+    end
+  end
+
   included do
     acts_as_api
 

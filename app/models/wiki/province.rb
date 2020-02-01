@@ -16,6 +16,10 @@
 #
 
 class Wiki::Province < ApplicationRecord
+  def self.disabled_in_config?
+    not Wiki.config.provinces?
+  end
+
   include Wiki::Object
 
   ICON = :'map-signs'

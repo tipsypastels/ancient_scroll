@@ -6,13 +6,9 @@ module WikiHelper
       else
         wiki_objects_path(type: object.type)
       end
-      
 
-    form_with model: object, 
-              url: url, 
-              class: "wiki-object-form #{opts.delete(:class)}",
-              **opts do |form|
-                yield form, url
-              end
+    render layout: 'wiki/objects/form', 
+           locals: { url: url, object: object, opts: opts }, 
+           &block
   end
 end

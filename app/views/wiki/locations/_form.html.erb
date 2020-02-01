@@ -17,16 +17,6 @@
 
 <%= wiki_object_form(location) do |f| %>
   <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
     <%= f.label :region_id %>
     <%= f.select :region_id, Wiki::Region.all.map { |r| [r.name, r.id] } %>
   </div>
@@ -47,13 +37,5 @@
   <div class="field" data-if-habitable style="<%= 'display: none' unless location.habitable? %>">
     <%= f.label :population %>
     <%= f.number_field :population %>
-  </div>
-
-  <div class="field">
-    <%= f.rich_text_area :content %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
   </div>
 <% end %>
