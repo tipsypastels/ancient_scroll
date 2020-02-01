@@ -2,10 +2,14 @@ module Wiki::Object::Content
   extend ActiveSupport::Concern
 
   included do
+    extend FriendlyId
+    friendly_id :name, use: :slugged
+
     api_accessible :index do |api|
       api.add :type
       api.add :id
       api.add :name
+      api.add :slug
     end
 
     api_accessible :show, extend: :index do |api|

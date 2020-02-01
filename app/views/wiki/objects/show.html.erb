@@ -7,7 +7,10 @@
     </h1>
 
     <nav class="title-bar__nav">
-      <%= link_to 'Edit', wiki_edit_object_path(@object.slug) if can_edit_object?(@object) %>
+      <% if can_edit_object?(@object) %>
+        <%= link_to 'Edit', edit_wiki_object_path(@object.slug, type: @object.type) %>
+      <% end %>
+      
       <%= link_to 'Export', @object.api_path, 'data-export-warn-of-spoilers': true %>
     </nav>
   </div>

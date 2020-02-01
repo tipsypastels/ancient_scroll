@@ -1,6 +1,20 @@
 module Wiki::Object
   extend ActiveSupport::Concern
   
+  def self.types
+    @types ||= {
+      regions: Wiki::Region,
+      provinces: Wiki::Province,
+      locations: Wiki::Location,
+      # quests
+      characters: Wiki::Character,
+      organizations: Wiki::Organization,
+      trainer_classes: Wiki::TrainerClass,
+      # pokemon, abilities, moves
+      sheets: Wiki::Sheet,
+    }.with_indifferent_access
+  end
+
   included do
     acts_as_api
 
@@ -8,7 +22,7 @@ module Wiki::Object
       api.add :intrinsic?
     end
 
-    include Content, Canon, Identifiable, Linkable, Trackable, Scopes, Icons, PolymorphicStrongParameters
+    include Content, Canon, Linkable, Trackable, Scopes, Icons, PolymorphicStrongParameters
   end
 
   def intrinsic?

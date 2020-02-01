@@ -6,6 +6,7 @@
 #  age              :integer
 #  gender           :integer
 #  name             :string
+#  slug             :string
 #  specialty        :string
 #  story_role       :integer
 #  updated_by       :integer
@@ -13,6 +14,10 @@
 #  updated_at       :datetime         not null
 #  hometown_id      :integer
 #  trainer_class_id :integer
+#
+# Indexes
+#
+#  index_characters_on_slug  (slug) UNIQUE
 #
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

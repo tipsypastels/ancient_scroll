@@ -1,21 +1,18 @@
 module WikiHelper
-  def wiki_object_page(object)
-    render partial: 'wiki/objects/object', locals: { object: object }
-  end
-
   def wiki_object_form(object, **opts, &block)
     url = 
       if object.persisted?
-        wiki_object_path(object.slug)
+        wiki_object_path(object.slug, type: object.type)
       else
-        wiki_objects_path
+        wiki_objects_path(type: object.type)
       end
       
 
     form_with model: object, 
               url: url, 
               class: "wiki-object-form #{opts.delete(:class)}",
-              **opts,
-              &block
+              **opts do |form|
+                yield form, url
+              end
   end
 end

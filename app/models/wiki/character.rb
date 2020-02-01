@@ -6,6 +6,7 @@
 #  age              :integer
 #  gender           :integer
 #  name             :string
+#  slug             :string
 #  specialty        :string
 #  story_role       :integer
 #  updated_by       :integer
@@ -14,12 +15,15 @@
 #  hometown_id      :integer
 #  trainer_class_id :integer
 #
+# Indexes
+#
+#  index_characters_on_slug  (slug) UNIQUE
+#
 
 class Wiki::Character < ApplicationRecord
   include Wiki::Object
 
   ICON = :portrait
-  MODIFIABLE_PROPERTIES = %i|age gender trainer_class_id hometown_id specialty story_role|
 
   scope :ordered_by_story_role, -> {
     order(story_role: :desc)

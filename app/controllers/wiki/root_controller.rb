@@ -1,5 +1,5 @@
 class Wiki::RootController < ApplicationController
   def index
-    redirect_to wiki_object_path('~home')
+    redirect_to '/wiki/sheets/home'
   end
 end

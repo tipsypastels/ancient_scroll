@@ -1,11 +1,19 @@
 module UrlHelper
-  def wiki_object_type_path_link(name, object_type = name.downcase, **opts)
-    path = wiki_objects_path(object_type)
-    active = path == request.path || @object&.type == object_type.singularize
+  def wiki_objects_path(type:)
+    send(:"wiki_#{type.pluralize}_path")
+  end
 
-    link_to name, 
-            path, 
-            class: "#{opts.delete(:class)} #{'active' if active}", 
-            **opts
+  def wiki_object_path(object, type:)
+    send(:"wiki_#{type.singularize}_path", to_slug(object))
+  end
+
+  def edit_wiki_object_path(object, type:)
+    send(:"edit_wiki_#{type.singularize}_path", to_slug(object))
+  end
+
+  private
+
+  def to_slug(object)
+    object.respond_to?(:slug) ? object.slug : object
   end
 end

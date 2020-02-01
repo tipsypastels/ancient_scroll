@@ -1,5 +1,6 @@
 module Wiki::Object::Linkable
   include Rails.application.routes.url_helpers
+  include UrlHelper
   def default_url_options; {}; end
 
   extend ActiveSupport::Concern
@@ -13,7 +14,7 @@ module Wiki::Object::Linkable
   end
 
   def path
-    wiki_object_path(slug) if slug
+    wiki_object_path(slug, type: type)
   end
 
   def api_path

@@ -1,15 +1,12 @@
 module Wiki::Sheet::Intrinsic
   extend ActiveSupport::Concern
 
-  PREFIX = '~'
-  REGEX = /\/#{PREFIX}[\w]+$/
-  
   def self.match?(url)
     REGEX.match?(url)
   end
 
   def self.find_sheet(id)
-    Wiki::Sheet.find_by(intrinsic_role: id.delete_prefix(PREFIX))
+    Wiki::Sheet.find_by(intrinsic_role: id)
   end
 
   def self.create_missing!
@@ -22,6 +19,7 @@ module Wiki::Sheet::Intrinsic
   end
     
   ROLES = %w|home faq guidelines|
+  ROUTE_REGEX = /#{ROLES.join('|')}/
 
   included do
     validates :intrinsic_role,

@@ -16,28 +16,29 @@
       <% end %>
 
       <nav>
-        <%= wiki_object_type_path_link('Regions') %>
-        <%= wiki_object_type_path_link('Provinces') if Wiki.config.provinces? %>
-        <%= wiki_object_type_path_link('Locations') %>
-        <%= wiki_object_type_path_link('Quests') %>
+        <%= active_link_to 'Regions', wiki_regions_path %>
+        <%= active_link_to 'Provinces', wiki_provinces_path if Wiki.config.provinces? %>
+        <%= active_link_to 'Locations', wiki_locations_path %>
+        <%#= active_link_to 'Quests', wiki_quests_path %>
 
         <%= divider %>
 
-        <%= wiki_object_type_path_link('Characters') %>
-        <%= wiki_object_type_path_link('Organizations') %>
-        <%= wiki_object_type_path_link('Trainer Classes', 'trainer_classes') %>
+        <%= active_link_to 'Characters', wiki_characters_path %>
+        <%= active_link_to 'Organizations', wiki_organizations_path %>
+        <%= active_link_to 'Trainer Classes', wiki_trainer_classes_path %>
 
         <%= divider %>
 
-        <%= wiki_object_type_path_link('Pokémon', 'pokemon') %>
-        <%= wiki_object_type_path_link('Abilities') %>
-        <%= wiki_object_type_path_link('Moves') %>
+        <%#= wiki_object_type_path_link('Pokémon', 'pokemon') %>
+        <%#= wiki_object_type_path_link('Abilities') %>
+        <%#= wiki_object_type_path_link('Moves') %>
 
-        <%= divider %>
+        <%#= divider %>
 
-        <%= active_link_to 'Wiki Home', wiki_object_path('~home') %>
-        <%= active_link_to 'Guidelines', wiki_object_path('~guidelines') %>
-        <%= active_link_to 'FAQ', wiki_object_path('~faq') %>
+        <%= active_link_to 'Wiki Home', wiki_intrinsic_path('home') %>
+        <%= active_link_to 'Guidelines', wiki_intrinsic_path('guidelines') %>
+        <%= active_link_to 'FAQ', wiki_intrinsic_path('faq') %>
+
         <%= active_link_to 'Adminland', admin_land_path if can_create_object? %>
         <%= active_link_to 'Creators', '/creators' %>
         <%= active_link_to 'Github', Wiki.config.github_url if Wiki.config.github_url %>

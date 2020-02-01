@@ -4,9 +4,14 @@
 #
 #  id         :bigint           not null, primary key
 #  name       :string
+#  slug       :string
 #  updated_by :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_organizations_on_slug  (slug) UNIQUE
 #
 
 class Wiki::Organization < ApplicationRecord

@@ -1,5 +1,6 @@
 class Wiki::Object::PreparedContent
   include Rails.application.routes.url_helpers
+  include UrlHelper
 
   def initialize(object, content)
     @object  = object
@@ -21,10 +22,10 @@ class Wiki::Object::PreparedContent
   attr_reader :object, :content, :links
 
   def wrap_object_name(name)
-    slug = Wiki.object_locator.locate(name)
-    return name unless slug
+    cached = Wiki.object_locator.locate(name)
+    return name unless cached
 
-    "<a href=\"#{wiki_object_path(slug)}\">#{name}</a>"
+    "<a href=\"#{wiki_object_path(cached.slug, type: cached.type)}\">#{name}</a>"
   end
 
   def wrap_spoilers(content, major)

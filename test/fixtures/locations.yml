@@ -6,11 +6,16 @@
 #  map_type    :integer
 #  name        :string
 #  population  :integer
+#  slug        :string
 #  updated_by  :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  province_id :integer
 #  region_id   :integer
+#
+# Indexes
+#
+#  index_locations_on_slug  (slug) UNIQUE
 #
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -4,7 +4,12 @@
 #
 #  id         :bigint           not null, primary key
 #  name       :string
+#  slug       :string
 #  updated_by :integer
+#
+# Indexes
+#
+#  index_items_on_slug  (slug) UNIQUE
 #
 
 class Wiki::Item < ApplicationRecord

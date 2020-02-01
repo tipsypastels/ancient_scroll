@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_223112) do
+ActiveRecord::Schema.define(version: 2020_02_01_010345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,15 +65,8 @@ ActiveRecord::Schema.define(version: 2020_01_31_223112) do
     t.integer "trainer_class_id"
     t.integer "story_role"
     t.integer "updated_by"
-  end
-
-  create_table "identifiers", force: :cascade do |t|
-    t.integer "identifiable_id"
-    t.string "identifiable_type"
     t.string "slug"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["slug"], name: "index_identifiers_on_slug", unique: true
+    t.index ["slug"], name: "index_characters_on_slug", unique: true
   end
 
   create_table "item_presences", force: :cascade do |t|
@@ -87,6 +80,8 @@ ActiveRecord::Schema.define(version: 2020_01_31_223112) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.integer "updated_by"
+    t.string "slug"
+    t.index ["slug"], name: "index_items_on_slug", unique: true
   end
 
   create_table "locations", force: :cascade do |t|
@@ -98,6 +93,8 @@ ActiveRecord::Schema.define(version: 2020_01_31_223112) do
     t.integer "map_type"
     t.integer "updated_by"
     t.integer "province_id"
+    t.string "slug"
+    t.index ["slug"], name: "index_locations_on_slug", unique: true
   end
 
   create_table "non_canonicities", force: :cascade do |t|
@@ -122,6 +119,8 @@ ActiveRecord::Schema.define(version: 2020_01_31_223112) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "updated_by"
+    t.string "slug"
+    t.index ["slug"], name: "index_organizations_on_slug", unique: true
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -129,6 +128,9 @@ ActiveRecord::Schema.define(version: 2020_01_31_223112) do
     t.integer "region_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.integer "updated_by"
+    t.index ["slug"], name: "index_provinces_on_slug", unique: true
   end
 
   create_table "regions", force: :cascade do |t|
@@ -136,6 +138,8 @@ ActiveRecord::Schema.define(version: 2020_01_31_223112) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "updated_by"
+    t.string "slug"
+    t.index ["slug"], name: "index_regions_on_slug", unique: true
   end
 
   create_table "sheets", force: :cascade do |t|
@@ -144,6 +148,8 @@ ActiveRecord::Schema.define(version: 2020_01_31_223112) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "updated_by"
     t.string "intrinsic_role"
+    t.string "slug"
+    t.index ["slug"], name: "index_sheets_on_slug", unique: true
   end
 
   create_table "trainer_classes", force: :cascade do |t|
@@ -152,6 +158,8 @@ ActiveRecord::Schema.define(version: 2020_01_31_223112) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "updated_by"
+    t.string "slug"
+    t.index ["slug"], name: "index_trainer_classes_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|

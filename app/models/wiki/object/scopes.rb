@@ -4,7 +4,6 @@ module Wiki::Object::Scopes
   included do
     scope :as_list, -> {
       order(updated_at: :desc)
-        .includes(:identifier)
     }
 
     scope :as_list_on_category, -> {

@@ -18,7 +18,7 @@ class Wiki::Object::Locator
     @regex_cache = {}
 
     OBJECT_TYPES.each do |type|
-      type.includes(:identifier).find_each(&method(:add))
+      type.find_each(&method(:add))
     end
   end
 
@@ -31,7 +31,7 @@ class Wiki::Object::Locator
   end
 
   def add(object)
-    cache[object.name] = object.slug
+    cache[object.name] = CachedObject.new(object.slug, object.type)
   end
 
   def remove(object_or_name)
@@ -42,4 +42,6 @@ class Wiki::Object::Locator
   private
 
   attr_reader :cache, :regex_cache
+
+  CachedObject = Struct.new(:slug, :type)
 end
